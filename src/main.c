@@ -6,6 +6,14 @@
 #define GPIOC_CRH       (*((volatile uint32_t*)(GPIOC_BASE + 0x4U)))// Configuración de pines 8..15 (p. 172)
 #define GPIOC_ODR       (*((volatile uint32_t*)(GPIOC_BASE + 0xCU)))// Registro de salida (p. 173)
 
+// contador vive en .data: valor inicial = 3, se copia de Flash a RAM en el startup.
+// Si la copia de .data falla, esta variable arranca con basura y el blink se rompe.
+volatile uint32_t contador = 10;
+
+// cero vive en .bss: debe arrancar en 0 (lo pone a cero el Reset_Handler).
+// Si .bss no se limpia, tiene basura.
+volatile uint32_t cero;
+
 int main()
 {
   // Habilitar el clock del periférico GPIOC

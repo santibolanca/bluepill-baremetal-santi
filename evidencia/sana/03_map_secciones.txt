@@ -1,0 +1,14 @@
+.vectors        0x08000000       0xd4
+.text           0x080000d4       0xe0
+ *(.text*)
+ .text          0x080000d4       0x7c obj/main.o
+ .text          0x08000150       0x64 obj/startup.o
+.bss            0x20000000        0x4
+ *(.bss*)
+ .bss           0x20000000        0x4 obj/main.o
+ .bss           0x20000004        0x0 obj/startup.o
+.data           0x20000004        0x4 load address 0x080001b4
+ *(.data*)
+ .data          0x20000004        0x4 obj/main.o
+ .data          0x20000008        0x0 obj/startup.o
+                0x080001b4                        _load_address = LOADADDR (.data)
