@@ -1,0 +1,98 @@
+.vectors        0x08000000       0xd4
+ *(.isr_vector)
+ .isr_vector    0x08000000       0xd4 obj/startup.o
+                0x08000000                vector_table
+
+.text           0x080000d4       0xe0
+.text           0x080000d4       0xe0
+ *(.text*)
+ .text          0x080000d4       0x7c obj/main.o
+                0x080000d4                main
+ .text          0x08000150       0x64 obj/startup.o
+                0x08000150                RTC_Alarm_IRQHandler
+                0x08000150                EXTI2_IRQHandler
+                0x08000150                DebugMon_Handler
+                0x08000150                TIM1_CC_IRQHandler
+                0x08000150                HardFault_Handler
+                0x08000150                SysTick_Handler
+                0x08000150                PendSV_Handler
+                0x08000150                NMI_Handler
+                0x08000150                EXTI3_IRQHandler
+                0x08000150                EXTI0_IRQHandler
+                0x08000150                I2C2_EV_IRQHandler
+                0x08000150                UsageFault_Handler
+                0x08000150                ADC1_2_IRQHandler
+                0x08000150                SPI1_IRQHandler
+                0x08000150                DMA1_Channel4_IRQHandler
+                0x08000150                USART3_IRQHandler
+                0x08000150                DMA1_Channel7_IRQHandler
+                0x08000150                CAN1_RX1_IRQHandler
+                0x08000150                TIM4_IRQHandler
+                0x08000150                I2C1_EV_IRQHandler
+                0x08000150                DMA1_Channel6_IRQHandler
+                0x08000150                TIM3_IRQHandler
+                0x08000150                TIM1_TRG_COM_IRQHandler
+                0x08000150                DMA1_Channel1_IRQHandler
+                0x08000150                Default_Handler
+                0x08000150                EXTI15_10_IRQHandler
+                0x08000150                EXTI9_5_IRQHandler
+                0x08000150                SPI2_IRQHandler
+                0x08000150                MemManage_Handler
+                0x08000150                SVC_Handler
+                0x08000150                DMA1_Channel5_IRQHandler
+                0x08000150                EXTI4_IRQHandler
+                0x08000150                USB_LP_CAN1_RX0_IRQHandler
+                0x08000150                USB_HP_CAN1_TX_IRQHandler
+                0x08000150                DMA1_Channel3_IRQHandler
+                0x08000150                TIM1_UP_IRQHandler
+                0x08000150                TIM2_IRQHandler
+                0x08000150                TIM1_BRK_IRQHandler
+                0x08000150                EXTI1_IRQHandler
+                0x08000150                USART2_IRQHandler
+                0x08000150                I2C2_ER_IRQHandler
+                0x08000150                DMA1_Channel2_IRQHandler
+                0x08000150                CAN1_SCE_IRQHandler
+                0x08000150                BusFault_Handler
+                0x08000150                USART1_IRQHandler
+                0x08000150                I2C1_ER_IRQHandler
+                0x08000150                USBWakeUp_IRQHandler
+                0x08000158                Reset_Handler
+
+.glue_7         0x080001b4        0x0
+ .glue_7        0x080001b4        0x0 linker stubs
+
+.glue_7t        0x080001b4        0x0
+ .glue_7t       0x080001b4        0x0 linker stubs
+
+.vfp11_veneer   0x080001b4        0x0
+ .vfp11_veneer  0x080001b4        0x0 linker stubs
+
+.v4_bx          0x080001b4        0x0
+ .v4_bx         0x080001b4        0x0 linker stubs
+
+.iplt           0x080001b4        0x0
+ .iplt          0x080001b4        0x0 obj/startup.o
+
+.rel.dyn        0x080001b4        0x0
+ .rel.iplt      0x080001b4        0x0 obj/startup.o
+
+.bss            0x20000000        0x4
+.bss            0x20000000        0x4
+                0x20000000                        _sbss = .
+ *(.bss*)
+ .bss           0x20000000        0x4 obj/main.o
+                0x20000000                cero
+ .bss           0x20000004        0x0 obj/startup.o
+                0x20000004                        _ebss = .
+
+.data           0x20000004        0x4 load address 0x080001b4
+                0x20000004                        _sdata = .
+ *(.data*)
+ .data          0x20000004        0x4 obj/main.o
+                0x20000004                contador
+ .data          0x20000008        0x0 obj/startup.o
+                0x20000008                        _edata = .
+                0x080001b4                        _load_address = LOADADDR (.data)
+OUTPUT(bin/blink_minimal.elf elf32-littlearm)
+LOAD linker stubs
+

@@ -1,0 +1,40 @@
+
+bin/blink_minimal.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+080000d4 <main>:
+ 80000d4:	b480      	push	{r7}
+ 80000d6:	b083      	sub	sp, #12
+ 80000d8:	af00      	add	r7, sp, #0
+ 80000da:	4b19      	ldr	r3, [pc, #100]	@ (8000140 <main+0x6c>)
+ 80000dc:	681b      	ldr	r3, [r3, #0]
+ 80000de:	4a18      	ldr	r2, [pc, #96]	@ (8000140 <main+0x6c>)
+ 80000e0:	f043 0310 	orr.w	r3, r3, #16
+ 80000e4:	6013      	str	r3, [r2, #0]
+ 80000e6:	4b17      	ldr	r3, [pc, #92]	@ (8000144 <main+0x70>)
+ 80000e8:	681b      	ldr	r3, [r3, #0]
+ 80000ea:	4a16      	ldr	r2, [pc, #88]	@ (8000144 <main+0x70>)
+ 80000ec:	f423 0370 	bic.w	r3, r3, #15728640	@ 0xf00000
+ 80000f0:	6013      	str	r3, [r2, #0]
+ 80000f2:	4b14      	ldr	r3, [pc, #80]	@ (8000144 <main+0x70>)
+ 80000f4:	681b      	ldr	r3, [r3, #0]
+ 80000f6:	4a13      	ldr	r2, [pc, #76]	@ (8000144 <main+0x70>)
+ 80000f8:	f443 1300 	orr.w	r3, r3, #2097152	@ 0x200000
+ 80000fc:	6013      	str	r3, [r2, #0]
+ 80000fe:	4b12      	ldr	r3, [pc, #72]	@ (8000148 <main+0x74>)
+ 8000100:	681b      	ldr	r3, [r3, #0]
+ 8000102:	4a11      	ldr	r2, [pc, #68]	@ (8000148 <main+0x74>)
+ 8000104:	f443 5300 	orr.w	r3, r3, #8192	@ 0x2000
+ 8000108:	6013      	str	r3, [r2, #0]
+ 800010a:	2300      	movs	r3, #0
+ 800010c:	607b      	str	r3, [r7, #4]
+ 800010e:	e002      	b.n	8000116 <main+0x42>
+ 8000110:	687b      	ldr	r3, [r7, #4]
+ 8000112:	3301      	adds	r3, #1
+ 8000114:	607b      	str	r3, [r7, #4]
+ 8000116:	687b      	ldr	r3, [r7, #4]
+ 8000118:	4a0c      	ldr	r2, [pc, #48]	@ (800014c <main+0x78>)
+ 800011a:	4293      	cmp	r3, r2
+ 800011c:	ddf8      	ble.n	8000110 <main+0x3c>

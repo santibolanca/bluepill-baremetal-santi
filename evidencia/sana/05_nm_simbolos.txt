@@ -1,0 +1,11 @@
+08000000 R vector_table
+080000d4 T main
+08000158 T Reset_Handler
+080001b4 A _load_address
+20000000 B _sbss
+20000000 B cero
+20000004 B _ebss
+20000004 D _sdata
+20000004 D contador
+20000008 D _edata
+20005000 R __reset_stack_pointer
