@@ -1,0 +1,19 @@
+diff --git a/linker.ld b/linker.ld
+index d91d912..975c20b 100644
+--- a/linker.ld
++++ b/linker.ld
+@@ -74,7 +74,13 @@ MEMORY
+ }
+ 
+ /* Dirección inicial de la pila: al final de la RAM */
+-__reset_stack_pointer = ORIGIN(RAM) + LENGTH(RAM);
++/* __reset_stack_pointer = ORIGIN(RAM) + LENGTH(RAM);
++
++/* FALLA C: Stack con margen insuficiente (20 bytes antes de .bss). */
++/* Deberia ser ORIGIN(RAM) + LENGTH(RAM) = 0x20005000. */
++/* Esta alterado a ORIGIN(RAM) + 20 = 0x20000014, que cae DENTRO del */
++/* rango de .bss y .data. El stack colisiona con variables globales. */
++__reset_stack_pointer = ORIGIN(RAM) + 20;
+ 
+ SECTIONS
+ {
