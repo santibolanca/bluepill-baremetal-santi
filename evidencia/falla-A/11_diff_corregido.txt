@@ -1,0 +1,30 @@
+diff --git a/linker.ld b/linker.ld
+index d91d912..7e4dd5e 100644
+--- a/linker.ld
++++ b/linker.ld
+@@ -78,16 +78,20 @@ __reset_stack_pointer = ORIGIN(RAM) + LENGTH(RAM);
+ 
+ SECTIONS
+ {
+-    /* Sección de vectores de interrupciones (va en FLASH al principio) */
+-    .vectors : {
+-        *(.isr_vector);  /* Contiene el puntero de pila inicial y el Reset_Handler */
+-    } > FLASH
+-
++    /* FALLA A: .text declarada ANTES que .vectors. */
++    /* Consecuencia: .vectors ya no queda en 0x08000000. */
++    
+     /* Sección de código: todas las funciones y código ejecutable */
+     .text : {
+         *(.text*)         /* Captura todas las subsecciones que empiecen con .text */
+     } > FLASH
+ 
++    /* Sección de vectores de interrupciones (va en FLASH al principio) */
++    .vectors : {
++        *(.isr_vector);  /* Contiene el puntero de pila inicial y el Reset_Handler */
++    } > FLASH
++    
++
+     /* Sección BSS: variables no inicializadas */
+     .bss : {
+         _sbss = .;            /* Inicio de BSS */
