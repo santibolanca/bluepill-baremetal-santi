@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+    436	      4	      4	    444	    1bc	bin/blink_minimal.elf

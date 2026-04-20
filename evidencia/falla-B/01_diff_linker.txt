@@ -1,0 +1,17 @@
+diff --git a/linker.ld b/linker.ld
+index d91d912..f38a418 100644
+--- a/linker.ld
++++ b/linker.ld
+@@ -109,5 +109,11 @@ SECTIONS
+     
+     
+     /* Dirección de donde se debe copiar .data al iniciar */
+-    _load_address = LOADADDR(.data);
++    /*_load_address = LOADADDR(.data);
++
++    /* FALLA B: _load_address apunta a una direccion INCORRECTA. */
++    /* Deberia ser LOADADDR(.data) = 0x08000200, pero lo forzamos */
++    /* a 0x08000000 (inicio de la vector table). El startup va a */
++    /* copiar 4 bytes equivocados desde ahi a RAM. */
++    _load_address = 0x08000000;
+ }

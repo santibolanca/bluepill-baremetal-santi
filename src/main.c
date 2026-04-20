@@ -34,7 +34,7 @@ int main()
     GPIOC_ODR |= (1U << 13);
 
     // Delay por software
-    for (int i = 0; i < 500000; i++);
+    for (int i = 0; i < contador * 500000; i++);
 
     // Encender LED (PC13 = 0)
     GPIOC_ODR &= ~(1U << 13);

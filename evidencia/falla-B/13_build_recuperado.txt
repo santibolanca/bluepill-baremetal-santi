@@ -1,0 +1,8 @@
+arm-none-eabi-gcc -Wall -Wextra -mcpu=cortex-m3 -g -c -o obj/main.o src/main.c
+src/main.c: In function 'main':
+src/main.c:37:23: warning: comparison of integer expressions of different signedness: 'int' and 'long unsigned int' [-Wsign-compare]
+   37 |     for (int i = 0; i < contador * 500000; i++);
+      |                       ^
+arm-none-eabi-gcc -Wall -Wextra -mcpu=cortex-m3 -g -c -o obj/startup.o src/startup.c
+arm-none-eabi-gcc -T linker.ld -nostartfiles -mcpu=cortex-m3 -Wl,-Map=bin/blink_minimal.elf.map -o bin/blink_minimal.elf obj/main.o obj/startup.o
+arm-none-eabi-objcopy -O binary bin/blink_minimal.elf bin/blink_minimal.elf.bin
